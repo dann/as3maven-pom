@@ -1,0 +1,10 @@
+<flex-config>
+  <keep-xml>true</keep-xml>
+  <skip-xsl>true</skip-xsl>
+  <packages>
+    <package>
+      <string>com.perl4u.sample</string>
+      <string>Classes and Interfaces for sample.</string>
+    </package>
+  </packages>
+</flex-config>

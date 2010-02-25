@@ -1,0 +1,305 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.perl4u.sample</groupId>
+  <artifactId>sample</artifactId>
+  <packaging>swc</packaging>
+  <version>0.01-SNAPSHOT</version>
+  <name>Sample</name>
+  <url>http://perl4u.com</url>
+  <description>
+  </description>
+  <inceptionYear>2010</inceptionYear>
+
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:svn:http://perl4u.com/svn/sample</connection>
+    <url>http://perl4u.com/svn/sample</url>
+  </scm>
+
+  <developers>
+    <developer>
+      <id>dann</id>
+      <name>dann</name>
+      <email>techmemo [at] gmail.com</email>
+      <url>http://github.com/dann</url>
+      <timezone>+9</timezone>
+    </developer>
+  </developers>
+
+  <ciManagement>
+    <system>sample</system>
+    <url>http://perl4u.com/hudson/sample</url>
+  </ciManagement>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <flexmojos.version>3.6-SNAPSHOT</flexmojos.version>
+    <flex-sdk.version>3.5.0.12683</flex-sdk.version>
+
+    <!-- Flash Player -->
+    <flashplayer.version>${flashplayer.version.major}.${flashplayer.version.minor}.${flashplayer.version.revision}
+    </flashplayer.version>
+    <flashplayer.version.major>10</flashplayer.version.major>
+    <flashplayer.version.minor>0</flashplayer.version.minor>
+    <flashplayer.version.revision>0</flashplayer.version.revision>
+
+    <!-- lib -->
+    <as3commons-logging.version>1.1</as3commons-logging.version>
+    <!-- testing -->
+    <flexunit.version>0.90</flexunit.version>
+  </properties>
+
+  <build>
+    <sourceDirectory>src/main/actionscript</sourceDirectory>
+    <testSourceDirectory>src/test/actionscript</testSourceDirectory>
+    <defaultGoal>install</defaultGoal>
+
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+      <resource>
+        <directory>src/test/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+        <targetPath>${project.build.directory}/test-classes</targetPath>
+        <filtering>true</filtering>
+      </testResource>
+    </testResources>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.sonatype.flexmojos</groupId>
+          <artifactId>flexmojos-maven-plugin</artifactId>
+          <version>${flexmojos.version}</version>
+          <extensions>true</extensions>
+          <dependencies>
+            <dependency>
+              <groupId>com.adobe.flex</groupId>
+              <artifactId>compiler</artifactId>
+              <version>${flex-sdk.version}</version>
+              <type>pom</type>
+            </dependency>
+          </dependencies>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <configuration>
+          <outputDirectory>${project.build.directory}</outputDirectory>
+          <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <configuration>
+          <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.sonatype.flexmojos</groupId>
+        <artifactId>flexmojos-maven-plugin</artifactId>
+        <version>${flexmojos.version}</version>
+        <dependencies>
+          <dependency>
+            <groupId>com.adobe.flex</groupId>
+            <artifactId>compiler</artifactId>
+            <version>${flex-sdk.version}</version>
+            <type>pom</type>
+          </dependency>
+        </dependencies>
+        <extensions>true</extensions>
+        <configuration>
+          <locales>
+            <param>en_US</param>
+          </locales>
+          <keepAs3Metadatas>
+            <param>Required</param>
+            <param>Autowired</param>
+            <param>Component</param>
+            <param>EventHandler</param>
+            <param>RouteEvents</param>
+          </keepAs3Metadatas>
+          <updateSecuritySandbox>true</updateSecuritySandbox>
+          <configurationReport>true</configurationReport>
+          <includeAsClasses>
+            <source>
+              <directory>src/main/actionscript</directory>
+            </source>
+          </includeAsClasses>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-site-plugin</artifactId>
+        <inherited>false</inherited>
+        <version>2.1</version>
+        <configuration>
+          <templateDirectory>src/site</templateDirectory>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>com.google.code.maven-license-plugin</groupId>
+        <artifactId>maven-license-plugin</artifactId>
+        <version>1.4.0</version>
+        <configuration>
+          <header>src/etc/header/LICENSE.txt</header>
+          <includes>
+            <include>src/**/*.as</include>
+          </includes>
+          <encoding>${project.build.sourceEncoding}</encoding>
+        </configuration>
+      </plugin> 
+
+    </plugins>
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.sonatype.flexmojos</groupId>
+        <artifactId>flexmojos-maven-plugin</artifactId>
+        <version>${flexmojos.version}</version>
+        <inherited>true</inherited>
+        <reportSets>
+          <reportSet>
+            <id>flex-reports</id>
+            <reports>
+              <report>asdoc-report</report>
+            </reports>
+            <configuration>
+              <aggregate>true</aggregate>
+              <reportOutputDirectory>target/site/docs/asdoc</reportOutputDirectory>
+              <configFile>asdoc-config.xml</configFile>
+              <footer>Copyright 2010 dann.</footer>
+              <description>API documentation for the sample library</description>
+              <mainTitle>Sample API documentation</mainTitle>
+              <windowTitle>Sample API documentation</windowTitle>
+              <name>SampleASDocs</name>
+            </configuration>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
+
+  <dependencies>
+    <!-- main -->
+    <dependency>
+      <groupId>com.adobe.flex.framework</groupId>
+      <artifactId>framework</artifactId>
+      <version>${flex-sdk.version}</version>
+      <type>swc</type>
+      <scope>external</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.adobe.flex.framework</groupId>
+      <artifactId>playerglobal</artifactId>
+      <version>${flex-sdk.version}</version>
+      <scope>external</scope>
+      <type>swc</type>
+      <classifier>${flashplayer.version.major}</classifier>
+    </dependency>
+
+    <!-- lib -->
+
+    <!-- testing -->
+    <dependency>
+      <groupId>com.adobe.flexunit</groupId>
+      <artifactId>flexunit</artifactId>
+      <version>0.85</version>
+      <type>swc</type>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <repositories>
+    <repository>
+      <id>flex-mojos-repository</id>
+      <url>http://repository.sonatype.org/content/groups/public</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>central</id>
+      <name>Maven Repository</name>
+      <url>http://repo1.maven.org/maven2</url>
+    </repository>
+
+   </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>flexmojos-repository</id>
+      <url>http://repository.sonatype.org/content/groups/public</url>
+    </pluginRepository>
+    <pluginRepository>
+      <id>flexpmd.opensource.adobe</id>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <name>FlexPMD repository on opensource.adobe.com</name>
+      <url>http://opensource.adobe.com/svn/opensource/flexpmd/maven-repository/release</url>
+    </pluginRepository>
+
+    <pluginRepository>
+      <id>mc-release</id>
+      <name>Local Maven repository of releases</name>
+      <url>http://mc-repo.googlecode.com/svn/maven2/releases</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </pluginRepository>
+  </pluginRepositories>
+
+</project>

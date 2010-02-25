@@ -1,0 +1,14 @@
+Sample actionscript project
+
+* compile
+  mvn package
+
+* test
+  mvn test
+
+* Generate Report
+  mvn site
+
+* Update license
+  mvn format:license
+
