@@ -1,5 +1,7 @@
 Sample actionscript project
 
+How to use
+
 * compile
   mvn package
 
