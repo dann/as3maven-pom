@@ -12,5 +12,5 @@ How to use
   mvn site
 
 * Update license
-  mvn format:license
+  mvn license:format
 
