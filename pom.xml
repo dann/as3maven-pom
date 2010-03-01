@@ -20,8 +20,8 @@
   </licenses>
 
   <scm>
-    <connection>scm:svn:http://perl4u.com/svn/sample</connection>
-    <url>http://perl4u.com/svn/sample</url>
+    <connection>scm:git:git://github.com/dann/as3maven-pom.git</connection>
+    <url>git:git://github.com/dann/as3maven-pom.git</git>
   </scm>
 
   <developers>
