@@ -21,7 +21,7 @@
 
   <scm>
     <connection>scm:git:git://github.com/dann/as3maven-pom.git</connection>
-    <url>git:git://github.com/dann/as3maven-pom.git</git>
+    <url>git:git://github.com/dann/as3maven-pom.git</url>
   </scm>
 
   <developers>
