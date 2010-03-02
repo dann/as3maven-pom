@@ -241,6 +241,14 @@
       <type>swc</type>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>org.sonatype.flexmojos</groupId>
+      <artifactId>flexmojos-unittest-support</artifactId>
+      <version>${flexmojos.version}</version>
+      <type>swc</type>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <repositories>
@@ -264,13 +272,14 @@
       <url>http://repo1.maven.org/maven2</url>
     </repository>
 
-   </repositories>
+  </repositories>
 
   <pluginRepositories>
     <pluginRepository>
       <id>flexmojos-repository</id>
       <url>http://repository.sonatype.org/content/groups/public</url>
     </pluginRepository>
+
     <pluginRepository>
       <id>flexpmd.opensource.adobe</id>
       <releases>
@@ -294,6 +303,7 @@
         <enabled>true</enabled>
       </releases>
     </pluginRepository>
+
   </pluginRepositories>
 
 </project>
